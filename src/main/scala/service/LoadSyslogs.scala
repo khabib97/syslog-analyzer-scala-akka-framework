@@ -15,7 +15,6 @@ object LoadSyslogs extends Config {
 
   val loadSyslogs = Future {
     val parser = new SyslogParser
-
     val syslogs: ArrayList[Syslog] = new ArrayList[Syslog]()
 
     Source.fromFile(logFilePath).getLines().foreach {
@@ -31,5 +30,4 @@ object LoadSyslogs extends Config {
     }
     SyslogsDao.insertBulk(syslogs.asScala.toList)
   }
-
 }
