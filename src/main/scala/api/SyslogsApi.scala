@@ -19,7 +19,7 @@ trait SyslogsApi extends JacksonSupport with ApiErrorHandler with ApiDataHandler
       complete(checkStatus())
     } ~
       (path("get_size") & get) {
-        complete(getRowSize(SyslogsDao.size()))
+        complete(getRowSize(SyslogsDao.size))
       } ~
       (path("histogram") & post) {
         entity(as[ReqData]) { reqData =>

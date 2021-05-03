@@ -28,7 +28,7 @@ object SyslogsDao extends BaseDao {
     logs.drop(BULK_LIMIT)
   }
 
-  def size(): Future[Int] = {
+  def size: Future[Int] = {
     db.run(sysLogTable.length.result)
   }
 

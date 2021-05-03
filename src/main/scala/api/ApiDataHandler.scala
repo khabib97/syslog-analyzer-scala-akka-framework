@@ -22,7 +22,6 @@ trait ApiDataHandler {
     val mapper = new ObjectMapper
     val node = mapper.createObjectNode
     data.map(size => (node.put("size", size)))
-    node
   }
 
   def generateDataFromSyslogSeq(reqData: ReqData, syslogs: Seq[Syslog]) =
