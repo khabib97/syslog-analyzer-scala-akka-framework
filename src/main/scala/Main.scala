@@ -12,10 +12,10 @@ import scala.concurrent.ExecutionContext
 object Main extends App with Config with Routes {
   private implicit val system: ActorSystem = ActorSystem()
   protected implicit val executor: ExecutionContext = system.dispatcher
-  protected val log: LoggingAdapter = Logging(system, getClass)
+  val log: LoggingAdapter = Logging(system, getClass)
 
   SyslogsDao.setupDB()
-  LoadSyslogs.loadSyslogs.map(res=> println("Data loading done"))
+  LoadSyslogs.loadSyslogs.map(res=> log.info("System logs are parsed and inserted"))
 
   val bindingFuture = Http()
     .bindAndHandle(handler = logRequestResult("log")(routes)
