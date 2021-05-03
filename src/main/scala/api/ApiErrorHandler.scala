@@ -6,10 +6,11 @@ import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.ExceptionHandler
 
 trait ApiErrorHandler {
+
   implicit def myExceptionHandler: ExceptionHandler = ExceptionHandler {
-    case e: NoSuchElementException =>
+    case ex: Exception =>
       extractUri { uri =>
-        complete(HttpResponse(NotFound, entity = s" Invalid id: ${e.getMessage}"))
+        complete(HttpResponse(InternalServerError, entity = s"Invalid Request ${uri}"))
       }
   }
 }
