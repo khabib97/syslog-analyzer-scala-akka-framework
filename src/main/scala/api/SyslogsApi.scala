@@ -1,23 +1,25 @@
 package api
 
-import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport._
+import akka.event.LoggingAdapter
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
 import de.heikoseeberger.akkahttpjackson.JacksonSupport
 import model._
 import model.dao.syslog.SyslogsDao
-import spray.json._
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
-trait SyslogsApi extends JacksonSupport with ApiDataHandler {
+trait SyslogsApi extends JacksonSupport with ApiErrorHandler with ApiDataHandler {
+
+  def log: LoggingAdapter
 
   val syslogsRoute: Route =
     (path("get_status") & get) {
-      complete(JsObject("status" -> JsString("ok")))
+      log.info("server is up and running")
+      complete(checkStatus())
     } ~
       (path("get_size") & get) {
-        complete(SyslogsDao.size().map(size => JsObject("size" -> JsNumber(size))))
+        complete(getRowSize(SyslogsDao.size()))
       } ~
       (path("histogram") & post) {
         entity(as[ReqData]) { reqData =>
@@ -33,4 +35,7 @@ trait SyslogsApi extends JacksonSupport with ApiDataHandler {
         complete(SyslogsDao.findAll())
       }
 }
+
+
+
 

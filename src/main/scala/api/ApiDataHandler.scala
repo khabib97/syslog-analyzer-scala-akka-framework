@@ -1,11 +1,29 @@
 package api
 
+import com.fasterxml.jackson.databind.ObjectMapper
+import model.dao.syslog.SyslogsDao
 import model.{Data, DbHistogramMapper, HighlightText, Histogram, ReqData, ResponseData, ResponseHistogram, Syslog}
 
 import java.util.ArrayList
 import scala.collection.JavaConverters._
+import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.Future
 
 trait ApiDataHandler {
+
+  def checkStatus() = {
+    val mapper = new ObjectMapper
+    val node = mapper.createObjectNode
+    node.put("status", "ok")
+    node
+  }
+
+  def getRowSize(data : Future[Int]) = {
+    val mapper = new ObjectMapper
+    val node = mapper.createObjectNode
+    data.map(size => (node.put("size", size)))
+    node
+  }
 
   def generateDataFromSyslogSeq(reqData: ReqData, syslogs: Seq[Syslog]) =
     ResponseData(
