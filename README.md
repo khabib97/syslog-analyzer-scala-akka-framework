@@ -1,6 +1,15 @@
 # Syslog Analyzer Using Scala AKKA Framework
 
-### Summary
+### Problem Statement
+
+Create a Linux system log (/var/log/messages) analyzer base on REST service.
+
+The user enters 3 fields: the date from which the data is analyzed (datetimeFrom), the date until which the data is analyzed (datetimeUntil), 
+the searchable phrase (phrase). The service must analyze the log file (/var/log/messages) 
+and select the records that are in the period from (datetimeFrom) to (datetimeUntil) 
+and the phrase (phrase) is found in the record.
+
+### Solution Summary
 
 After starting, this application takes a syslog(demo file added in the repo) file name from `application.config` file. 
 Then parse the syslog file, separate each line and lastly divide each line into two parts: 
@@ -34,6 +43,8 @@ Import project in your IDE, it will download all dependencies.
 ### Run
 
 Go to > src/scala/Main.scala > right-click > run 'Main'
+
+`default url: http://127.0.0.1:8080/get_status`
 
 ### Learning 
 
