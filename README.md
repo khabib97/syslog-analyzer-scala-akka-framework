@@ -2,8 +2,9 @@
 
 ### Summary
 
-This application takes a syslog file name from `application.config` file. 
-Then parse it. Separate each line and divide it into two parts: 
+After starting, this application takes a syslog(demo file added in the repo) file name from `application.config` file. 
+Then parse the syslog file, separate each line and lastly divide each line into two parts: 
+
 1. datetime
 2. message
 
@@ -37,7 +38,7 @@ Go to > src/scala/Main.scala > right-click > run 'Main'
 ### Learning 
 
 - file import and parsing in scala
-- crud operation in scala
+- database operation in scala
 - raw query in scala
 - typesafe query using slick
 - functional programming
@@ -50,6 +51,7 @@ Go to > src/scala/Main.scala > right-click > run 'Main'
 - Need to add unit testing
 - Need to add complete logging system
 - Need to add data validation and exception handling
+- Support only linux syslog file in this stage
 
 
 
