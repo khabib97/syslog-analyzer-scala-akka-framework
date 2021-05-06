@@ -2,7 +2,7 @@ package model.dao.syslog
 
 import model.{DbHistogramMapper, ReqData, Syslog}
 import slick.jdbc.GetResult
-import slick.jdbc.PostgresProfile.api._
+import slick.jdbc.H2Profile.api._
 import scala.concurrent.Future
 
 object SyslogsDao extends BaseDao {
