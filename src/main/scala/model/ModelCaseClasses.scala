@@ -16,9 +16,9 @@ case class Syslog(
                     datetime: Timestamp)
 
 case class ReqData(
-                    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+                    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
                     datetimeFrom: Timestamp,
-                    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+                    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
                     datetimeUntil: Timestamp,
                     phrase: String)
 
@@ -28,7 +28,7 @@ case class HighlightText(
                         )
 
 case class Data(
-                 @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+                 //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
                  datetime: Timestamp,
                  message: String,
                  highlightText: List[HighlightText]
@@ -36,24 +36,24 @@ case class Data(
 
 case class ResponseData(
                       data: List[Data],
-                      @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+                      //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
                       datetimeFrom: Timestamp,
-                      @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+                      //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
                       datetimeUntil: Timestamp,
                       phrase: String
                     )
 
 case class Histogram(
-                      @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+                      //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
                       datetime: Timestamp,
                       counts: Long
                     )
 
 case class ResponseHistogram(
                            histogram: Vector[Histogram],
-                           @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+                           //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
                            datetimeFrom: Timestamp,
-                           @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+                           //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
                            datetimeUntil: Timestamp,
                            phrase: String
                          )
