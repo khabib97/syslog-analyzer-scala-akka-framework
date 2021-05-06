@@ -41,8 +41,10 @@ object SyslogsDao extends BaseDao {
   }
 
   def histogram(data: ReqData) = {
+
+    var messageWild = s"%${data.phrase}%"
     /**Need to write raw query because there is no support for GROUP_CONCAT in slick*/
-    val query = sql"""SELECT "date" AS date, GROUP_CONCAT("message") AS message FROM "logs" WHERE "date" >= ${data.datetimeFrom} AND "date" <= ${data.datetimeUntil} GROUP BY "date" """.as[DbHistogramMapper]
+    val query = sql"""SELECT "date" AS date, GROUP_CONCAT("message") AS message FROM "logs" WHERE "date" >= ${data.datetimeFrom} AND "date" <= ${data.datetimeUntil} AND "message" LIKE  ${messageWild} GROUP BY "date" """.as[DbHistogramMapper]
     db.run(query)
   }
 
