@@ -5,7 +5,7 @@ version := "1.0"
 scalaVersion := "2.12.3"
 
 libraryDependencies ++= {
-  val akkaVersion = "2.5.6"
+  val akkaVersion = "2.5.32"
   val akkaHttpVersion = "10.0.10"
   val scalaTestVersion = "3.0.1"
   val scalaMockV = "3.5.0"
@@ -28,6 +28,7 @@ libraryDependencies ++= {
     "de.heikoseeberger"  %% "akka-http-jackson"           % akkaHttpJsonSerializersVersion,
 
     "org.scalatest"      %% "scalatest"                   % scalaTestVersion % Test,
-    "org.scalamock"      %% "scalamock-scalatest-support" % scalaMockV % Test
+    "org.scalamock"      %% "scalamock-scalatest-support" % scalaMockV % Test,
+    "ch.megard"          %% "akka-http-cors"              % "1.1.1"
   )
 }
