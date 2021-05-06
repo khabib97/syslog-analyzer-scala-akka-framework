@@ -7,8 +7,8 @@ import akka.http.scaladsl.server.ExceptionHandler
 
 trait ApiErrorHandler {
 
-  implicit def myExceptionHandler: ExceptionHandler = ExceptionHandler {
-    case ex: Exception =>
+  implicit def customExceptionHandler: ExceptionHandler = ExceptionHandler {
+    case _: ArithmeticException  =>
       extractUri { uri =>
         complete(HttpResponse(InternalServerError, entity = s"Invalid Request ${uri}"))
       }
