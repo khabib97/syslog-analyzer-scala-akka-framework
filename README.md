@@ -11,7 +11,7 @@ and the phrase (phrase) is found in the record.
 
 ### Solution Summary
 
-After starting, this application takes a syslog(demo file added in the repo) file name from `application.config` file. 
+After starting, this application takes a syslog([demo file added in the repo](https://raw.githubusercontent.com/khabib97/syslog-analyzer-scala-akka-framework/master/syslog-input-file.log)) file name from `application.config` file. 
 Then parse the syslog file, separate each line and lastly divide each line into two parts: 
 
 1. datetime
