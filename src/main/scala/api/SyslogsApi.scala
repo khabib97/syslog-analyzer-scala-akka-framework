@@ -2,18 +2,20 @@ package api
 
 import akka.event.LoggingAdapter
 import akka.http.scaladsl.server.Directives._
-import akka.http.scaladsl.server.Route
+import akka.http.scaladsl.server.{Rejection, Route}
 import de.heikoseeberger.akkahttpjackson.JacksonSupport
 import model._
 import model.dao.syslog.SyslogsDao
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
-trait SyslogsApi extends JacksonSupport with ApiErrorHandler with ApiDataHandler {
+trait RejectionHandler extends (Seq[Rejection] ⇒Option[Route])
+
+trait SyslogsApi extends JacksonSupport with ApiDataHandler {
 
   def log: LoggingAdapter
 
-  val syslogsRoute: Route =
+  val syslogsRoute: Route = Route.seal(
     (path("get_status") & get) {
       log.info("server is up and running")
       complete(checkStatus())
@@ -34,6 +36,7 @@ trait SyslogsApi extends JacksonSupport with ApiErrorHandler with ApiDataHandler
       (path("logs") & get) {
         complete(SyslogsDao.findAll())
       }
+  )
 }
 
 
