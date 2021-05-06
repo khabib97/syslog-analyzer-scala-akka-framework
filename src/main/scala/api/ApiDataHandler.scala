@@ -1,8 +1,7 @@
 package api
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import model.dao.syslog.SyslogsDao
-import model.{Data, DbHistogramMapper, HighlightText, Histogram, ReqData, ResponseData, ResponseHistogram, Syslog}
+import model._
 
 import java.util.ArrayList
 import scala.collection.JavaConverters._
